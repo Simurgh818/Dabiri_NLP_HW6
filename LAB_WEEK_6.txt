@@ -1,0 +1,28 @@
+LAB/HOMEWORK. 
+BMI 500; WEEK 6: NATURAL LANGUAGE PROCESSING 2
+AUTHOR: ABEED SARKER
+DATE: 09/2021
+
+SUBMISSION PROTOCOL: 
+Put all code in a .py file. 
+Prepare a report for the answers to the following questions. 
+Submit both the .py files and the report.
+
+1. You are provided two text files (text1 and text2)
+a) Preprocess the two texts by lowercasing them.
+b) Follow the instructions on https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html
+to vectorize the two texts using the CountVectorizer. Use n-gram size of 1-3 for the vectorizer.
+c) Compute the cosine similarity between the texts (sklearn provides a function for it).
+d) Compute the jaccard similarity between text1 and text2
+
+2. Read section 4 and 5 of the nltk book: https://www.nltk.org/book/ch05.html.
+a) Follow the instructions to train a POS tagger.
+Show the performance of different taggers (e.g., unigram, bigram and combined taggers) on your chosen corpus (e.g. the brown corpus).
+Use 90% of the data for training and 10% for evaluation.
+Compare the performances of at least 3 taggers.
+Save and load the tagger.
+Use a trained tagger to tag all the words from text1.
+Can lowercasing affect the performance of the POS tagger? (Put your answer as comment in python file)
+
+
+3. What are some of the possible NLP components of a Question Answering System?
