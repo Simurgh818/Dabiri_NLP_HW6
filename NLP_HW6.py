@@ -87,11 +87,34 @@ unigram_tagger = nltk.UnigramTagger(train_sents)
 print("Accuracy of Unigram Tagger: ", unigram_tagger.evaluate(test_sents))
 
 # Bigram tagging
+bigram_tagger = nltk.BigramTagger(train_sents)
+print("Accuracy of Bigram Tagger: ", bigram_tagger.evaluate(test_sents))
 
 # Combined Taggers
-
+t0 = nltk.DefaultTagger('NN')
+t1 = nltk.UnigramTagger(train_sents, cutoff=2, backoff=t0)
+t2 = nltk.BigramTagger(train_sents, cutoff=2, backoff=t1)
+t3 = nltk.TrigramTagger(train_sents, cutoff=2, backoff=t2)
+print("Accuracy of Combined Tagger: ", t3.evaluate(test_sents))
 # Compare performances
+# Bigram accuracy is significantly lower due to sparse data issue for context information.
+'''The combined method uses Trigram first, if didn't find tag tries Bigram, if failed uses Unigram, 
+if failed then uses the default tagger of 'NN'. '''
 
 # Save and load tagger
+from pickle import dump
+output = open('t3.pkl', 'wb')
+dump(t3, output, -1)
+output.close()
 
-
+from pickle import load
+input = open('t3.pkl', 'rb')
+tagger = load(input)
+input.close()
+'''
+Use a trained tagger to tag all the words from text1.
+Can lowercasing affect the performance of the POS tagger? (Put your answer as comment in python file)
+'''
+tokens = text1_token
+print("The Combo Tagger tagging of text1 is:", tagger.tag(tokens))
+# Lowercasing improves performance of a tagger by not creating different categories of a word with different casings.
