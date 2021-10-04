@@ -118,3 +118,13 @@ Can lowercasing affect the performance of the POS tagger? (Put your answer as co
 tokens = text1_token
 print("The Combo Tagger tagging of text1 is:", tagger.tag(tokens))
 # Lowercasing improves performance of a tagger by not creating different categories of a word with different casings.
+
+'''
+3. What are some of the possible NLP components of a Question Answering System?
+'''
+
+# 1- Query Analysis, where subdomain of the question is identified.
+# 2- Single-doc summary, where parts of a document relevant to the query is identified.
+# 3- Multi-doc summary, where relevant parts of multiple documents are combined.
+# 4- Quality assessment, where QC is performed. i.e. in Medical filed whether evidence came from Randomized Controlled
+#   trials or case report. 
