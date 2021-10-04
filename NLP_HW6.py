@@ -41,16 +41,16 @@ d) Compute the jaccard similarity between text1 and text2
 '''
 from sklearn.metrics import jaccard_score
 import numpy as np
-print(np.shape(vect1), '\n', np.shape(vect2))
-print(np.dtype(vect1), '\n', np.dtype(vect2))
+# print(np.shape(vect1), '\n', np.shape(vect2))
+# print(np.dtype(vect1), '\n', np.dtype(vect2))
 
 # remove white space, tokenize
 text1_token = text1.strip().split()
 text2_token = text2.strip().split()
 text1_set = set(text1_token)
 text2_set = set(text2_token)
-print("Tokenized text1 as a set is: ", text1_set)
-print("Tokenized text2 as a set is: ", text2_set)
+# print("Tokenized text1 as a set is: ", text1_set)
+# print("Tokenized text2 as a set is: ", text2_set)
 
 # Find the intersection of the two vectors
 intersec = text1_set.intersection(text2_set)
@@ -61,5 +61,37 @@ union = text1_set.union(text2_set)
 # Calculate Jaccard similarity
 jaccard_similarity = float(len(intersec)/len(union))
 print("The Jaccard similarity is: ", jaccard_similarity)
+
+'''
+2. Read section 4 and 5 of the nltk book: https://www.nltk.org/book/ch05.html.
+a) Follow the instructions to train a POS tagger.
+Show the performance of different taggers (e.g., unigram, bigram and combined taggers) on your chosen corpus (e.g. the brown corpus).
+Use 90% of the data for training and 10% for evaluation.
+Compare the performances of at least 3 taggers.
+Save and load the tagger.
+'''
+
+import nltk
+from nltk.corpus import brown
+brown_tagged_sents = brown.tagged_sents(categories='news')
+brown_sents = brown.sents(categories='news')
+# tags = [tag for (word, tag) in brown.tagged_words(categories='news')]
+# conditional_fd = nltk.ConditionalFreqDist(brown.tagged_words(categories='news'))
+# print("The conditional Freq Distribution is: ", conditional_fd)
+
+# Unigram tagging
+size = int(len(brown_tagged_sents) * 0.9)
+train_sents = brown_tagged_sents[:size]
+test_sents = brown_tagged_sents[size:]
+unigram_tagger = nltk.UnigramTagger(train_sents)
+print("Accuracy of Unigram Tagger: ", unigram_tagger.evaluate(test_sents))
+
+# Bigram tagging
+
+# Combined Taggers
+
+# Compare performances
+
+# Save and load tagger
 
 
